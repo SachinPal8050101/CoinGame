@@ -3,7 +3,7 @@ import {View, Text, Button, StyleSheet, Image} from 'react-native';
 
 const MAX_COINS = 21;
 
-const GameScreen = () => {
+const GameScreen = props => {
   const [coinsRemaining, setCoinsRemaining] = useState(MAX_COINS);
   const [playerTurn, setPlayerTurn] = useState(true);
   const [winnerText, setWinnerText] = useState('');
@@ -52,6 +52,9 @@ const GameScreen = () => {
   const checkWinner = () => {
     const winText = playerTurn ? 'You Lose!' : 'You Win!';
     setWinnerText(winText);
+    setTimeout(() => {
+      props.navigation.navigate('Lost');
+    }, 1000);
   };
 
   return (
