@@ -1,10 +1,11 @@
-import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 
 const GameScreen = () => {
+  console.log('===>>>>');
   return (
-    <View style={styles.styles}>
-      <Text>GameScreen.component</Text>
+    <View style={styles.conatiner}>
+      <Text>GameScreen.componentsdsd==</Text>
     </View>
   );
 };

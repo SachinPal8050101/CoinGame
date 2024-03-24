@@ -11,8 +11,9 @@ const Stack = createNativeStackNavigator();
 const AppNavigation = ({isLoggedIn = false}) => {
   return (
     <>
-      {!isLoggedIn && <LogInScreen />}
-      {isLoggedIn && (
+      {!isLoggedIn ? (
+        <LogInScreen />
+      ) : (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Game">
             <Stack.Screen name="Game" component={GameScreen} />
