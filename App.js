@@ -27,11 +27,20 @@ const App = () => {
   const userSignIn = () => {
     setIsLoggedIn(true);
   };
+
+  const userSignOut = () => {
+    setIsLoggedIn(false);
+  };
   if (!rehydrated) {
     return <CustomSpinner visible={true} />;
   }
   return (
-    <AppContext.Provider value={{isLoggedIn: isLoggedIn, signIn: userSignIn}}>
+    <AppContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        signIn: userSignIn,
+        signOut: userSignOut,
+      }}>
       <Provider store={rootStore}>
         <AppNavigation />
       </Provider>

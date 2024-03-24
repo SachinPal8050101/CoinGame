@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useSelector} from 'react-redux';
 
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import AppContext from '../../store/authStore';
 
 const LostScreen = props => {
   const {gameHistory = []} = useSelector(state => state.homeSlice);
-  const userWinningSttus = gameHistory[gameHistory.length - 1].text;
+  const {signOut} = useContext(AppContext);
+
+  const userWinningSttus =
+    gameHistory.length && gameHistory[gameHistory.length - 1].text;
   const playAgain = () => {
     props.navigation.goBack();
   };
@@ -19,9 +23,25 @@ const LostScreen = props => {
     );
   };
 
+  const logOutPress = () => {
+    signOut();
+  };
+
+  const onHistoryPress = () => {
+    props.navigation.navigate('History');
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.lostText}>{userWinningSttus}</Text>
+      <View style={styles.maincon}>
+        <TouchableOpacity onPress={logOutPress}>
+          <Text style={styles.logOut}>Log Out</Text>
+        </TouchableOpacity>
+        <Text style={styles.lostText}>{userWinningSttus}</Text>
+        <TouchableOpacity onPress={onHistoryPress}>
+          <Text style={styles.logOut}>History</Text>
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity style={styles.playButton} onPress={playAgain}>
         <Text style={styles.playButtonText}>Play Again</Text>
       </TouchableOpacity>
@@ -75,6 +95,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 10,
     textAlign: 'center',
+  },
+  maincon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 20,
+    marginHorizontal: 20,
+  },
+  logOut: {
+    fontSize: 15,
+    fontWeight: 'bold',
   },
 });
 
