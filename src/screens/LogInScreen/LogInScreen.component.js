@@ -1,10 +1,16 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useContext} from 'react';
+import AppContext from '../../store/authStore';
 
 const LogInScreen = () => {
+  const {signIn} = useContext(AppContext);
+
   return (
     <View style={styles.styles}>
       <Text>LogInScreen.component</Text>
+      <TouchableOpacity onPress={signIn}>
+        <Text> LogIn </Text>
+      </TouchableOpacity>
     </View>
   );
 };

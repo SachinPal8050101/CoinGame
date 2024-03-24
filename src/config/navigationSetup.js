@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LogInScreen from '../screens/LogInScreen/LogInScreen.component';
 import GameScreen from '../screens/GameScreen/GameScreen.component';
 import LostScreen from '../screens/LostScreen/LostScreen.component';
 import GameHistoryScreen from '../screens/GameHistoryScreen/GameHistoryScreen.component';
+import AppContext from '../store/authStore';
 
 const Stack = createNativeStackNavigator();
 
-const AppNavigation = ({isLoggedIn = false}) => {
+const AppNavigation = () => {
+  const {isLoggedIn = false} = useContext(AppContext);
   return (
     <>
       {!isLoggedIn ? (
