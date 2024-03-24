@@ -17,7 +17,9 @@ const AppNavigation = () => {
         <LogInScreen />
       ) : (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Game">
+          <Stack.Navigator
+            screenOptions={{headerShown: false}}
+            initialRouteName="Game">
             <Stack.Screen name="Game" component={GameScreen} />
             <Stack.Screen name="Lost" component={LostScreen} />
             <Stack.Screen name="History" component={GameHistoryScreen} />

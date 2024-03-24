@@ -25,6 +25,12 @@ const LogInScreen = () => {
         password: password,
       });
       signIn();
+    } else if (username === 'guest' && password === 'guest1234') {
+      await AsyncStorageHelper.setItem('user', {
+        username: username,
+        password: password,
+      });
+      signIn();
     }
   };
 

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button, StyleSheet, Image} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {gameSuccess} from '../../store/Home.Reducer';
 
 const MAX_COINS = 21;
 
@@ -7,6 +9,9 @@ const GameScreen = props => {
   const [coinsRemaining, setCoinsRemaining] = useState(MAX_COINS);
   const [playerTurn, setPlayerTurn] = useState(true);
   const [winnerText, setWinnerText] = useState('');
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!playerTurn) {
       calculateAiChoice();
@@ -23,7 +28,6 @@ const GameScreen = props => {
     if (availCoins <= 0) {
       checkWinner();
     }
-    // checkWinner();
   };
 
   const genrateRandomNumberForAi = () => {
@@ -53,6 +57,7 @@ const GameScreen = props => {
     const winText = playerTurn ? 'You Lose!' : 'You Win!';
     setWinnerText(winText);
     setTimeout(() => {
+      dispatch(gameSuccess({text: winText, date: new Date()}));
       props.navigation.navigate('Lost');
     }, 1000);
   };

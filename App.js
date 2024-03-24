@@ -4,6 +4,8 @@ import AppContext from './src/store/authStore';
 import CustomSpinner from './src/components/CustomSpinner';
 
 import AsyncStorageHelper from './src/config/asyncHelper';
+import {Provider} from 'react-redux';
+import rootStore from './src/store/initReduxxStore';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +32,9 @@ const App = () => {
   }
   return (
     <AppContext.Provider value={{isLoggedIn: isLoggedIn, signIn: userSignIn}}>
-      <AppNavigation />
+      <Provider store={rootStore}>
+        <AppNavigation />
+      </Provider>
     </AppContext.Provider>
   );
 };

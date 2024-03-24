@@ -1,31 +1,33 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
+
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 
-const date = new Date('2022-01-01').toDateString();
-
 const LostScreen = props => {
+  const {gameHistory = []} = useSelector(state => state.homeSlice);
+  const userWinningSttus = gameHistory[gameHistory.length - 1].text;
   const playAgain = () => {
     props.navigation.goBack();
   };
 
-  const renderCard = () => {
+  const renderCard = ({item}) => {
     return (
       <View style={styles.card}>
-        <Text style={styles.cardText}> Lost</Text>
-        <Text style={styles.cardText}>{date}</Text>
+        <Text style={styles.cardText}>{item.text}</Text>
+        <Text style={styles.cardText}>{item.date.toDateString()}</Text>
       </View>
     );
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.lostText}>{'You Lost'}</Text>
+      <Text style={styles.lostText}>{userWinningSttus}</Text>
       <TouchableOpacity style={styles.playButton} onPress={playAgain}>
         <Text style={styles.playButtonText}>Play Again</Text>
       </TouchableOpacity>
       <Text style={styles.pastGame}>Past Games Result</Text>
       <FlatList
-        data={[{}]}
+        data={gameHistory}
         renderItem={renderCard}
         keyExtractor={(item, index) => index.toString()}
       />
@@ -37,7 +39,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    borderWidth: 1,
   },
   card: {
     borderWidth: 1,
