@@ -53,10 +53,12 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'balck',
   },
   pastGame: {
     fontSize: 20,
     marginLeft: 40,
+    color: 'black',
   },
   lostText: {
     fontSize: 30,

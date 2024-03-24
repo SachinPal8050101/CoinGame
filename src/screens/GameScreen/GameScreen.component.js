@@ -130,24 +130,29 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'black',
   },
   winnerText: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'black',
   },
   coinsText: {
     fontSize: 18,
     marginBottom: 10,
+    color: 'black',
   },
   turnText: {
     fontSize: 16,
     marginBottom: 10,
+    color: 'black',
   },
   aiTurnText: {
     fontSize: 16,
     marginBottom: 10,
     fontStyle: 'italic',
+    color: 'black',
   },
   aiChoiceText: {
     fontSize: 16,
@@ -161,5 +166,8 @@ const styles = StyleSheet.create({
   coinImage: {
     width: 50,
     height: 50,
+  },
+  textColor: {
+    color: 'black',
   },
 });
