@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {gameSuccess} from '../../store/Home.Reducer';
 
@@ -80,26 +87,26 @@ const GameScreen = props => {
             <>
               <Text style={styles.turnText}>Your Turn!</Text>
               <View style={styles.buttonRow}>
-                <Button
-                  title="1"
+                <TouchableOpacity
                   onPress={() => handlePlayerPick(1)}
-                  style={styles.button}
-                />
-                <Button
-                  title="2"
+                  style={styles.button}>
+                  <Text style={styles.buttonText}>1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                   onPress={() => handlePlayerPick(2)}
-                  style={styles.button}
-                />
-                <Button
-                  title="3"
+                  style={styles.button}>
+                  <Text style={styles.buttonText}>2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                   onPress={() => handlePlayerPick(3)}
-                  style={styles.button}
-                />
-                <Button
-                  title="4"
+                  style={styles.button}>
+                  <Text style={styles.buttonText}>3</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                   onPress={() => handlePlayerPick(4)}
-                  style={styles.button}
-                />
+                  style={styles.button}>
+                  <Text style={styles.buttonText}>4</Text>
+                </TouchableOpacity>
               </View>
             </>
           ) : (
@@ -107,11 +114,10 @@ const GameScreen = props => {
           )}
         </>
       )}
-      <Button
-        title="Restart Game"
-        onPress={handleRestart}
-        style={styles.restartButton}
-      />
+
+      <TouchableOpacity onPress={handleRestart} style={styles.button}>
+        <Text style={[styles.buttonText, styles.restart]}>RESTART</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -170,4 +176,7 @@ const styles = StyleSheet.create({
   textColor: {
     color: 'black',
   },
+  button: {borderWidth: 1, padding: 15, margin: 15, backgroundColor: 'orange'},
+  buttonText: {fontSize: 30, color: 'white'},
+  restart: {fontSize: 20},
 });
