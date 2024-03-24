@@ -30,21 +30,21 @@ const GameScreen = props => {
     }
   };
 
-  const genrateRandomNumberForAi = () => {
-    const randomChoice = Math.floor(Math.random() * 4) + 1;
-    return randomChoice;
-  };
-
   const calculateAiChoice = () => {
-    const randomChoice = genrateRandomNumberForAi();
-    const availCoins = coinsRemaining - randomChoice;
-    if (availCoins <= 0) {
-      checkWinner();
+    let aiCoinsToPick = coinsRemaining % 5;
+    if (aiCoinsToPick === 0) {
+      aiCoinsToPick = Math.floor(Math.random() * 4) + 1;
     }
+    const coinsLeft = coinsRemaining - aiCoinsToPick;
     setTimeout(() => {
-      setCoinsRemaining(coinsRemaining - randomChoice);
+      setCoinsRemaining(coinsLeft);
       setPlayerTurn(true);
     }, 1000);
+    if (coinsLeft <= 0) {
+      setWinnerText('AI Win!');
+      dispatch(gameSuccess({text: 'AI Win!', date: new Date()}));
+      props.navigation.navigate('Lost');
+    }
   };
 
   const handleRestart = () => {
